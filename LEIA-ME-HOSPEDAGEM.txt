@@ -1,0 +1,31 @@
+ENTRELINHAS — VERSÃO COM SUPABASE
+
+COMO ABRIR NO WINDOWS
+1) Extraia todo o ZIP para uma pasta.
+2) Dê duplo clique em iniciar-entrelinhas.bat. Se o Windows perguntar, permita abrir a janela.
+3) Deixe a janela preta aberta enquanto estiver usando o site. O navegador abre em http://localhost:3000.
+4) Para parar o site, feche a janela preta.
+
+A página inicial mantém a apresentação pública. Depois de entrar, os botões de inscrição somem. O menu da estante e da comunidade tem links para as telas correspondentes. “Meu perfil”, na lateral, abre seu próprio perfil; a marca Entrelinhas e “Início” levam à página inicial.
+
+A biblioteca salva livros no Supabase, com capa, comentário, avaliação, datas, progresso e formato físico/digital. Em Amigos, você pode buscar perfis reais e seguir/deixar de seguir. Uma pessoa só aparece como amiga quando o seguimento é mútuo. No perfil, você pode editar nome, usuário e biografia, além de escolher uma foto, ajustar o zoom e o enquadramento e salvá-la; livros lidos de outra pessoa só aparecem quando vocês se seguem mutuamente.
+
+Antes de hospedar, configure Authentication > URL Configuration no Supabase com o endereço publicado (Site URL e Redirect URLs). O navegador usa apenas a chave Publishable. Nunca coloque uma chave Secret/service_role ou senha do banco nos arquivos públicos.
+
+O cadastro e a entrada usam o Supabase Auth. Se o cadastro continuar apresentando erro, anote ou fotografe a mensagem exibida para corrigirmos na próxima etapa. Confirmação por e-mail pode precisar estar ativa no Supabase.
+
+O sino abre um painel flutuante no topo da tela, com avisos de novos seguidores e de livros adicionados por amigos com seguimento mútuo. Se você já executou uma versão anterior do SQL de notificações, execute novamente a versão atualizada do arquivo supabase-notificacoes.sql no SQL Editor do Supabase; ela atualiza a estrutura e os gatilhos com segurança. Os arquivos notifications.js e notifications.css controlam a abertura do painel, a lista, o contador e a atualização dos avisos. O aviso de livro leva ao livro no perfil da pessoa. Para habilitar conversas privadas entre amigos, execute o arquivo supabase-mensagens.sql no SQL Editor do Supabase. O arquivo cria as regras de segurança, atualiza o Realtime e gera uma notificação quando chega uma mensagem. O botão de mensagem aparece no perfil quando os dois usuários se seguem mutuamente.
+
+
+
+
+
+
+
+
+ATUALIZAÇÃO: CORREÇÃO MOBILE E FOTO DE PERFIL
+1) Publique os arquivos desta pasta no mesmo local em que publica a versão atual.
+2) No painel do Supabase, abra SQL Editor, copie o conteúdo de supabase-foto-perfil.sql e execute.
+3) Atualize o site no celular. Se continuar aparecendo a versão antiga, feche a aba e abra novamente.
+4) Em Meu perfil, escolha uma foto, use os controles de zoom e enquadramento e clique em Salvar perfil.
+

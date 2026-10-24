@@ -1,0 +1,1 @@
+const client=window.entrelinhasSupabase;client.auth.getSession().then(({data})=>{if(!data.session)return;document.querySelectorAll('.signup-cta').forEach(el=>el.hidden=true);document.querySelectorAll('.account-library-link').forEach(el=>el.hidden=false);const modal=document.getElementById('signup');if(modal)modal.remove()});

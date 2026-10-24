@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f7f1">
+  <title>Mensagens — Entrelinhas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
+  <link rel="stylesheet" href="minha estante protótipo 1.css?v=mobile-avatar-1">
+  <link rel="stylesheet" href="mensagens.css">
+  <link rel="stylesheet" href="notifications.css?v=5">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="mensagens.js?v=2" defer></script>
+  <script src="notifications.js?v=6" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="logo" href="index.html">entre<span>.</span>linhas</a>
+      <a class="profile-mini profile-link" href="perfil.html">
+        <span class="avatar" id="avatarTop">EU</span>
+        <span><strong id="nameTop">Minha conta</strong><small id="usernameTop">@leitor</small></span>
+      </a>
+      <nav class="side-nav" aria-label="Navegação principal">
+        <a href="index.html"><span class="material-symbols-outlined">space_dashboard</span>Início</a>
+        <a href="minha estante protótipo 1.html"><span class="material-symbols-outlined">auto_stories</span>Minha estante</a>
+        <a href="amigos.html"><span class="material-symbols-outlined">group</span>Amigos</a>
+        <a href="amigos.html#buscar"><span class="material-symbols-outlined">explore</span>Descobrir</a>
+        <a class="selected" href="mensagens.html" aria-current="page"><span class="material-symbols-outlined">chat</span>Mensagens</a>
+      </nav>
+      <div class="sidebar-note"><span class="material-symbols-outlined">local_cafe</span><p>Uma boa conversa também começa por uma boa história.</p></div>
+      <a class="sidebar-bottom profile-link" href="perfil.html">
+        <span class="avatar small-avatar" id="avatarBottom">EU</span>
+        <span id="nameBottom">Meu perfil</span>
+        <span class="material-symbols-outlined more">arrow_forward</span>
+      </a>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="breadcrumb">Sua comunidade <span>/</span> Mensagens</div>
+        <div class="messages-top-actions">
+          <details class="notification-wrap">
+            <summary class="icon-button notification-link" id="notificationButton" aria-label="Abrir notificações" aria-controls="notificationPanel">
+              <span class="material-symbols-outlined">notifications</span>
+              <span class="notification-badge" id="notificationBadge" hidden></span>
+            </summary>
+            <section class="notification-panel" id="notificationPanel" aria-label="Notificações">
+              <div class="notification-panel-head">
+                <h2>Notificações</h2>
+                <div>
+                  <button class="mark-all-notifications" id="markAllNotifications" type="button">Marcar lidas</button>
+                  <button class="notification-close" id="notificationClose" type="button" aria-label="Fechar notificações"><span class="material-symbols-outlined">close</span></button>
+                </div>
+              </div>
+              <div class="notification-list" id="notificationList" aria-live="polite"><div class="notification-empty">Carregando notificações…</div></div>
+            </section>
+          </details>
+          <button class="icon-button" id="logoutButton" type="button" aria-label="Sair da conta"><span class="material-symbols-outlined">logout</span></button>
+        </div>
+      </header>
+
+      <section class="messages-intro">
+        <div class="eyebrow"><span class="material-symbols-outlined">chat</span> CONVERSAS ENTRE AMIGOS</div>
+        <h1>Palavras que <em>aproximam.</em></h1>
+        <p>As mensagens ficam disponíveis entre pessoas que se seguem mutuamente.</p>
+      </section>
+
+      <section class="messages-layout" aria-label="Caixa de mensagens">
+        <aside class="conversation-sidebar" aria-labelledby="conversationListTitle">
+          <div class="conversation-sidebar-head">
+            <div><span class="section-label">SUA COMUNIDADE</span><h2 id="conversationListTitle">Conversas</h2></div>
+            <a class="new-message-link" href="amigos.html#buscar" aria-label="Encontrar amigos"><span class="material-symbols-outlined">edit_square</span></a>
+          </div>
+          <div class="conversation-list" id="conversationList" aria-live="polite">
+            <p class="conversation-placeholder">Carregando conversas…</p>
+          </div>
+        </aside>
+
+        <section class="conversation-view" id="conversationView" aria-label="Conversa">
+          <div class="conversation-empty" id="conversationEmpty">
+            <span class="material-symbols-outlined">forum</span>
+            <h2>Escolha uma conversa</h2>
+            <p>Abra o perfil de um amigo para começar uma conversa privada.</p>
+            <a class="button" href="amigos.html"><span class="material-symbols-outlined">group</span>Ver amigos</a>
+          </div>
+          <div class="active-conversation" id="activeConversation" hidden>
+            <header class="conversation-header">
+              <a class="conversation-back" href="mensagens.html" aria-label="Voltar às conversas"><span class="material-symbols-outlined">arrow_back</span></a>
+              <span class="avatar conversation-avatar" id="conversationAvatar">EU</span>
+              <div><h2 id="conversationName">Conversa</h2><small id="conversationHandle">@leitor</small></div>
+              <span class="friend-status"><span class="material-symbols-outlined">group</span>Amigos</span>
+            </header>
+            <div class="message-history" id="messageHistory" aria-live="polite" aria-label="Histórico de mensagens"></div>
+            <p class="conversation-notice" id="conversationNotice" role="status"></p>
+            <form class="message-composer" id="messageForm">
+              <label class="visually-hidden" for="messageInput">Escreva sua mensagem</label>
+              <textarea id="messageInput" rows="1" maxlength="2000" placeholder="Escreva uma mensagem…" required></textarea>
+              <button class="send-message-button" type="submit" aria-label="Enviar mensagem"><span class="material-symbols-outlined">send</span></button>
+            </form>
+            <small class="message-hint">Conversa privada · até 2.000 caracteres por mensagem</small>
+          </div>
+        </section>
+      </section>
+      <footer class="page-footer">Entrelinhas <span>·</span> Conversas que nascem das leituras.</footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f7f1">
+  <title>Perfil — Entrelinhas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
+  <link rel="stylesheet" href="minha estante protótipo 1.css?v=mobile-avatar-1">
+  <link rel="stylesheet" href="perfil.css?v=photo-crop-1">
+  <link rel="stylesheet" href="notifications.css?v=5">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="perfil.js?v=3" defer></script>
+  <script src="notifications.js?v=6" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="logo" href="index.html">entre<span>.</span>linhas</a>
+      <a class="profile-mini profile-link" href="perfil.html">
+        <span class="avatar" id="avatarTop">EU</span>
+        <span><strong id="nameTop">Minha conta</strong><small id="usernameTop">@leitor</small></span>
+      </a>
+      <nav class="side-nav" aria-label="Navegação principal">
+        <a href="index.html"><span class="material-symbols-outlined">space_dashboard</span>Início</a>
+        <a href="minha estante protótipo 1.html"><span class="material-symbols-outlined">auto_stories</span>Minha estante</a>
+        <a href="amigos.html"><span class="material-symbols-outlined">group</span>Amigos</a>
+        <a href="amigos.html#buscar"><span class="material-symbols-outlined">explore</span>Descobrir</a>
+        <a href="mensagens.html"><span class="material-symbols-outlined">chat</span>Mensagens</a>
+      </nav>
+      <div class="sidebar-note"><span class="material-symbols-outlined">local_cafe</span><p>Cada leitura deixa uma lembrança. Guarde as suas por aqui.</p></div>
+      <a class="sidebar-bottom profile-link" href="perfil.html">
+        <span class="avatar small-avatar" id="avatarBottom">EU</span>
+        <span id="nameBottom">Meu perfil</span>
+        <span class="material-symbols-outlined more">arrow_forward</span>
+      </a>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="breadcrumb">Seu espaço <span>/</span> <span id="breadcrumbName">Meu perfil</span></div>
+        <div class="profile-actions">
+          <details class="notification-wrap">
+            <summary class="icon-button notification-link" id="notificationButton" aria-label="Abrir notificações" aria-controls="notificationPanel">
+              <span class="material-symbols-outlined">notifications</span>
+              <span class="notification-badge" id="notificationBadge" hidden></span>
+            </summary>
+            <section class="notification-panel" id="notificationPanel" aria-label="Notificações">
+              <div class="notification-panel-head">
+                <h2>Notificações</h2>
+                <div>
+                  <button class="mark-all-notifications" id="markAllNotifications" type="button">Marcar lidas</button>
+                  <button class="notification-close" id="notificationClose" type="button" aria-label="Fechar notificações"><span class="material-symbols-outlined">close</span></button>
+                </div>
+              </div>
+              <div class="notification-list" id="notificationList" aria-live="polite"><div class="notification-empty">Carregando notificações…</div></div>
+            </section>
+          </details>
+          <button class="icon-button" id="logoutButton" type="button" aria-label="Sair da conta" title="Sair da conta"><span class="material-symbols-outlined">logout</span></button>
+          <a class="icon-button profile-home" href="index.html" aria-label="Voltar ao início"><span class="material-symbols-outlined">home</span></a>
+        </div>
+      </header>
+
+      <section class="profile-hero" aria-labelledby="profileHeading">
+        <div class="profile-avatar" id="profileAvatar"><span id="profileAvatarInitials">EU</span></div>
+        <div>
+          <div class="eyebrow"><span class="material-symbols-outlined">person</span><span id="profileEyebrow">SEU CANTINHO</span></div>
+          <h1 id="profileHeading">Meu perfil</h1>
+          <p id="profileHandle">@leitor</p>
+        </div>
+      </section>
+
+      <section class="friend-actions" id="friendActions" aria-label="Ações do perfil" hidden>
+        <button class="button" id="followButton" type="button"><span class="material-symbols-outlined" id="followIcon">person_add</span><span id="followLabel">Seguir</span></button>
+        <a class="button button-secondary" id="messageButton" href="mensagens.html" hidden><span class="material-symbols-outlined">chat</span>Enviar mensagem</a>
+        <span class="friend-action-note" id="friendActionNote" aria-live="polite"></span>
+      </section>
+
+      <section class="profile-card" id="ownProfile" aria-labelledby="ownProfileTitle" hidden>
+        <div class="profile-card-head">
+          <div><div class="section-label">SUA CONTA</div><h2 id="ownProfileTitle">Um pouco sobre você</h2></div>
+          <span class="material-symbols-outlined">edit_note</span>
+        </div>
+        <form id="profileForm">
+          <section class="photo-editor" aria-labelledby="photoEditorTitle">
+            <div class="photo-crop-frame" id="photoCropFrame" aria-label="Prévia do enquadramento da foto">
+              <span class="material-symbols-outlined photo-placeholder" id="photoPlaceholder">add_a_photo</span>
+              <img id="photoCropPreview" alt="Prévia do corte da foto" hidden>
+            </div>
+            <div class="photo-editor-controls">
+              <div><strong id="photoEditorTitle">Sua foto de perfil</strong><p>Escolha uma foto e ajuste o enquadramento antes de salvar.</p></div>
+              <div class="photo-buttons">
+                <label class="button photo-select" for="profilePhotoInput"><span class="material-symbols-outlined">photo_camera</span>Escolher foto</label>
+                <input id="profilePhotoInput" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+                <button class="photo-remove" id="removeProfilePhoto" type="button" hidden>Remover foto</button>
+              </div>
+              <div class="crop-controls" id="cropControls" hidden>
+                <label for="cropZoom">Zoom <input id="cropZoom" type="range" min="100" max="250" value="100"></label>
+                <label for="cropHorizontal">Enquadramento horizontal <input id="cropHorizontal" type="range" min="0" max="100" value="50"></label>
+                <label for="cropVertical">Enquadramento vertical <input id="cropVertical" type="range" min="0" max="100" value="50"></label>
+              </div>
+              <small class="field-hint" id="photoMessage">A foto aparece no seu perfil e na navegação da sua conta.</small>
+            </div>
+          </section>
+          <label for="fullName">Nome completo</label>
+          <input id="fullName" maxlength="100" required>
+          <label for="username">Nome de usuário</label>
+          <input id="username" minlength="3" maxlength="30" pattern="[A-Za-z0-9._-]+" required>
+          <label for="bio">Biografia</label>
+          <textarea id="bio" maxlength="240" rows="4" placeholder="Conte um pouquinho sobre você e suas leituras."></textarea>
+          <small class="field-hint">Até 240 caracteres. Sua biografia aparece para pessoas conectadas a você.</small>
+          <p class="form-message" id="profileMessage" role="status"></p>
+          <button class="button" type="submit"><span class="material-symbols-outlined">save</span>Salvar perfil</button>
+        </form>
+      </section>
+
+      <section class="profile-books" id="friendProfile" aria-labelledby="friendBooksTitle" hidden>
+        <div class="section-heading"><div><div class="section-label">ESTANTE COMPARTILHADA</div><h2 id="friendBooksTitle">Livros e lembranças</h2></div></div>
+        <div id="friendBooks" class="friend-books"></div>
+      </section>
+      <footer class="page-footer">Entrelinhas <span>·</span> Seu espaço, sua história.</footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
+
+
+

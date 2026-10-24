@@ -1,0 +1,73 @@
+.profile-link {
+  color: inherit;
+  text-decoration: none;
+}
+.profile-link:hover { color: var(--green); }
+.profile-actions, .sidebar-bottom.profile-link { display: flex; align-items: center; gap: 8px; }
+.sidebar-bottom.profile-link { gap: 9px; min-width: 0; }
+.sidebar-bottom.profile-link #nameBottom { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.profile-hero { display: flex; align-items: center; gap: 19px; padding: 25px 0 24px; }
+.profile-avatar { display: grid; width: 84px; height: 84px; place-items: center; border: 5px solid #fff; border-radius: 50%; background: #e7cfaa; box-shadow: 0 3px 20px #26382f12; color: #553c2e; font: 700 23px 'DM Sans'; }
+.profile-hero h1 { margin: 6px 0 3px; font: 600 34px 'Playfair Display'; }
+.profile-hero p { margin: 0; color: #819086; font-size: 12px; }
+.friend-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 22px 103px; }
+.friend-actions[hidden] { display: none; }
+.friend-actions .button { text-decoration: none; }
+.friend-actions .button .material-symbols-outlined { font-size: 17px; }
+.friend-actions .button:disabled { opacity: .82; cursor: default; }
+.friend-actions .button.is-complete { border-color: #dce7d9; background: #eaf1e8; color: #315944; }
+.button-secondary { border-color: #d9e0d6; background: transparent; color: var(--green); }
+.button-secondary:hover { background: #edf3ec; }
+.friend-action-note { flex-basis: 100%; color: #78867b; font-size: 10px; }
+.profile-card { max-width: 650px; padding: 22px 24px; border: 1px solid var(--line); border-radius: 14px; background: var(--white); }
+.profile-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.profile-card-head h2, .profile-books h2 { margin: 5px 0 0; font: 600 22px 'Playfair Display'; }
+.profile-card-head > .material-symbols-outlined { color: var(--green); font-size: 22px; }
+.profile-card form { display: grid; gap: 8px; }
+.profile-card label { margin-top: 6px; color: #65746a; font-size: 10px; font-weight: 700; }
+.profile-card input, .profile-card textarea { width: 100%; padding: 11px 12px; border: 1px solid #e2e2d9; border-radius: 8px; outline: 0; background: #fffefa; color: var(--ink); font: 12px 'DM Sans'; }
+.profile-card input:focus, .profile-card textarea:focus { border-color: #91a991; box-shadow: 0 0 0 3px #e4eee3; }
+.profile-card textarea { resize: vertical; line-height: 1.5; }
+.field-hint { color: #89948b; font-size: 9px; }
+.form-message { min-height: 16px; margin: 3px 0; color: var(--green); font-size: 11px; }
+.form-message.error { color: #ae4b3e; }
+.profile-card .button { justify-self: start; margin-top: 3px; }
+.profile-books { margin-top: 30px; }
+.friend-books { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; margin-top: 14px; }
+.friend-book-card { padding: 14px; border: 1px solid var(--line); border-radius: 11px; background: var(--white); }
+.friend-book-card:target { scroll-margin-top: 24px; outline: 2px solid #91a991; box-shadow: 0 0 0 5px #e4eee3; }
+.friend-book-card h3 { margin: 0 0 4px; font: 600 15px 'Playfair Display'; }
+.friend-book-card small { color: #839087; font-size: 10px; }
+.friend-book-card p { margin: 9px 0 0; color: #68776c; font: 11px/1.55 'Playfair Display', serif; }
+.friend-book-meta { display: flex; flex-wrap: wrap; gap: 5px; }
+.friend-book-status { display: inline-block; margin-top: 8px; padding: 5px 8px; border-radius: 20px; background: #edf2eb; color: #618064; font-size: 9px; }
+.profile-home { display: grid; text-decoration: none; }
+.profile-private { grid-column: 1 / -1; padding: 36px; border-radius: 12px; background: #edf1e9; color: #718078; text-align: center; font-size: 12px; line-height: 1.6; }
+@media (max-width: 600px) {
+  .profile-hero { gap: 13px; }
+  .profile-avatar { width: 65px; height: 65px; }
+  .profile-hero h1 { font-size: 27px; }
+  .friend-actions { margin-left: 0; }
+  .profile-card { padding: 18px 15px; }
+  .friend-books { grid-template-columns: 1fr; }
+}
+
+/* Foto de perfil com prévia de corte por zoom e posição. */
+.profile-avatar { position: relative; overflow: hidden; }
+.profile-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: inherit; object-fit: cover; }
+.photo-editor { display: grid; grid-template-columns: 132px minmax(0,1fr); gap: 18px; align-items: center; margin: 0 0 18px; padding: 15px; border: 1px solid var(--line); border-radius: 12px; background: #faf9f4; }
+.photo-crop-frame { position: relative; width: 132px; aspect-ratio: 1; overflow: hidden; border: 4px solid #fff; border-radius: 50%; background: #e8eee6; box-shadow: 0 2px 12px #26382f16; }
+.photo-crop-frame img { position: absolute; max-width: none; max-height: none; user-select: none; pointer-events: none; }
+.photo-placeholder { position: absolute; inset: 0; display: grid; place-items: center; color: #758b79; font-size: 34px; }
+.photo-editor-controls { min-width: 0; }
+.photo-editor-controls strong { color: var(--ink); font: 600 15px 'Playfair Display',serif; }
+.photo-editor-controls p { margin: 5px 0 10px; color: #79857c; font-size: 10px; line-height: 1.5; }
+.photo-buttons { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
+.photo-select { min-height: 34px; padding: 0 11px; font-size: 10px; cursor: pointer; }
+.photo-select .material-symbols-outlined { font-size: 16px; }
+.photo-remove { padding: 7px 0; border: 0; background: transparent; color: #a45b4c; font-size: 10px; cursor: pointer; }
+.crop-controls { display: grid; gap: 8px; margin-top: 12px; }
+.crop-controls[hidden] { display: none; }
+.crop-controls label { display: grid; grid-template-columns: 140px minmax(80px,1fr); align-items: center; gap: 8px; color: #65746a; font-size: 9px; font-weight: 600; }
+.crop-controls input { width: 100%; accent-color: var(--green); }
+@media(max-width:600px){.photo-editor{grid-template-columns:1fr;justify-items:center;padding:14px}.photo-editor-controls{width:100%}.photo-editor-controls>div:first-child{text-align:center}.photo-buttons{justify-content:center}.crop-controls label{grid-template-columns:125px minmax(70px,1fr)}}
